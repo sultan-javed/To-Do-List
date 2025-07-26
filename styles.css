@@ -1,429 +1,240 @@
 /* Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
-    min-height: 100vh;
-    padding: 2rem;
-    position: relative;
-    overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(120deg, #fff7f1, #f0fbf8);
+  color: #1a1a1a;
+  min-height: 100vh;
+  padding: 3rem 1.5rem;
+  overflow-x: hidden;
 }
 
-/* Mirror reflection elements */
-body::before,
-body::after {
-    content: '';
-    position: absolute;
-    background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
-    border-radius: 50%;
-    filter: blur(80px);
-    pointer-events: none;
-}
-
-body::before {
-    width: 400px;
-    height: 400px;
-    top: 10%;
-    left: -10%;
-    animation: mirror1 20s ease-in-out infinite;
-}
-
-body::after {
-    width: 300px;
-    height: 300px;
-    bottom: 10%;
-    right: -10%;
-    animation: mirror2 25s ease-in-out infinite;
-}
-
-@keyframes mirror1 {
-    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
-    50% { transform: translate(50px, -50px) scale(1.2); opacity: 0.4; }
-}
-
-@keyframes mirror2 {
-    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
-    50% { transform: translate(-30px, 30px) scale(0.8); opacity: 0.9; }
-}
-
-/* Main container - Mirror effect */
+/* Container */
 .main-wrapper {
-    max-width: 600px;
-    margin: 0 auto;
-    background: 
-        linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.1) 100%),
-        rgba(0,0,0,0.4);
-    backdrop-filter: blur(25px) saturate(180%);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 24px;
-    padding: 2.5rem;
-    box-shadow: 
-        0 25px 50px rgba(0,0,0,0.5),
-        inset 0 1px 0 rgba(255,255,255,0.2),
-        inset 0 -1px 0 rgba(255,255,255,0.1);
-    position: relative;
+  max-width: 500px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  border-radius: 28px;
+  padding: 2.5rem 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 4px 18px rgba(255, 107, 107, 0.15),
+    0 8px 40px rgba(78, 205, 196, 0.08);
 }
 
-/* Mirror shine effect */
-.main-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 50%;
-    background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 100%);
-    border-radius: 24px 24px 0 0;
-    pointer-events: none;
-}
-
-.main-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    right: 2px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
-    border-radius: 24px;
-}
-
-/* Title with mirror reflection */
+/* Title */
 .main-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 2rem;
-    text-align: center;
-    text-shadow: 
-        0 0 30px rgba(255,255,255,0.3),
-        0 2px 0 rgba(0,0,0,0.8);
-    letter-spacing: -0.5px;
-    position: relative;
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: #ff6b6b;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  background: linear-gradient(to right, #ff6b6b, #4ecdc4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
 }
 
-.main-title::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    color: rgba(255,255,255,0.1);
-    transform: scaleY(-1);
-    background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 70%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    pointer-events: none;
-}
-
-/* Input group */
+/* Inputs */
 .input-group {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
 }
 
-/* Mirror input styling */
 #taskinput, #searchinput {
-    background: 
-        linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)),
-        rgba(0,0,0,0.3);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 16px;
-    padding: 1rem 1.25rem;
-    font-size: 1rem;
-    color: #ffffff;
-    transition: all 0.3s ease;
-    outline: none;
-    box-shadow: 
-        inset 0 1px 0 rgba(255,255,255,0.1),
-        inset 0 -1px 0 rgba(0,0,0,0.2);
-}
-
-#taskinput {
-    flex: 1;
-}
-
-#searchinput {
-    width: 100%;
-    margin-bottom: 2rem;
+  flex: 1;
+  padding: 16px 20px;
+  border-radius: 18px;
+  border: 2px solid #e4e4e4;
+  background: #ffffff;
+  font-size: 16px;
+  color: #1a1a1a;
+  transition: 0.2s ease;
+  font-weight: 500;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
 }
 
 #taskinput::placeholder, #searchinput::placeholder {
-    color: rgba(255,255,255,0.5);
+  color: #7b7b8a;
 }
 
 #taskinput:focus, #searchinput:focus {
-    background: 
-        linear-gradient(145deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08)),
-        rgba(0,0,0,0.2);
-    border-color: rgba(255,255,255,0.4);
-    box-shadow: 
-        0 8px 32px rgba(255,255,255,0.1),
-        inset 0 1px 0 rgba(255,255,255,0.2),
-        inset 0 -1px 0 rgba(0,0,0,0.1);
-    transform: translateY(-2px);
+  border-color: #4ecdc4;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.2);
+  background: #ffffff;
 }
 
-/* Mirror add button */
+/* Add Button */
 #addbtn {
-    background: 
-        linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1)),
-        rgba(0,0,0,0.3);
-    backdrop-filter: blur(15px);
-    color: #ffffff;
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 16px;
-    padding: 1rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 
-        inset 0 1px 0 rgba(255,255,255,0.2),
-        inset 0 -1px 0 rgba(0,0,0,0.2);
-}
-
-#addbtn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.6s;
-}
-
-#addbtn:hover::before {
-    left: 100%;
+  background: linear-gradient(135deg, #ff6b6b, #ffa07a);
+  color: white;
+  border: none;
+  border-radius: 18px;
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+  box-shadow: 0 6px 12px rgba(255, 107, 107, 0.25);
 }
 
 #addbtn:hover {
-    background: 
-        linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,255,255,0.15)),
-        rgba(0,0,0,0.2);
-    border-color: rgba(255,255,255,0.4);
-    transform: translateY(-3px);
-    box-shadow: 
-        0 12px 40px rgba(255,255,255,0.15),
-        inset 0 1px 0 rgba(255,255,255,0.3);
+  background: linear-gradient(135deg, #ff4757, #ff7f50);
+  transform: scale(1.05);
 }
 
-/* Tasks container */
+#addbtn:active {
+  transform: scale(0.95);
+}
+
+/* Tasks Container */
 #result {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-/* Mirror task items */
+/* Task Item */
 #result div {
-    background: 
-        linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04)),
-        rgba(0,0,0,0.4);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 18px;
-    padding: 1.25rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: all 0.4s ease;
-    position: relative;
-    box-shadow: 
-        inset 0 1px 0 rgba(255,255,255,0.1),
-        inset 0 -1px 0 rgba(0,0,0,0.2);
-}
-
-#result div::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 50%;
-    background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 100%);
-    border-radius: 18px 18px 0 0;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-
-#result div:hover::before {
-    opacity: 1;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #f0f0f0;
+  box-shadow:
+    0 2px 6px rgba(78, 205, 196, 0.08),
+    0 6px 16px rgba(255, 107, 107, 0.08);
+  transition: 0.2s ease;
 }
 
 #result div:hover {
-    background: 
-        linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06)),
-        rgba(0,0,0,0.3);
-    border-color: rgba(255,255,255,0.3);
-    transform: translateY(-4px);
-    box-shadow: 
-        0 20px 60px rgba(0,0,0,0.3),
-        0 0 0 1px rgba(255,255,255,0.1),
-        inset 0 1px 0 rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.15);
 }
 
 #result div h1 {
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    flex: 1;
-    color: #ffffff;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  flex: 1;
+  font-size: 17px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
 }
 
-/* Mirror glass checkbox */
+/* Checkbox */
 #result div h1 input[type="checkbox"] {
-    width: 22px;
-    height: 22px;
-    margin-right: 1rem;
-    cursor: pointer;
-    appearance: none;
-    background: 
-        linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)),
-        rgba(0,0,0,0.3);
-    border: 2px solid rgba(255,255,255,0.2);
-    border-radius: 8px;
-    position: relative;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    box-shadow: 
-        inset 0 1px 0 rgba(255,255,255,0.1),
-        inset 0 -1px 0 rgba(0,0,0,0.2);
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #c4c4c4;
+  margin-right: 14px;
+  background: white;
+  transition: 0.2s ease;
+  position: relative;
 }
 
 #result div h1 input[type="checkbox"]:hover {
-    background: 
-        linear-gradient(145deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08)),
-        rgba(0,0,0,0.2);
-    border-color: rgba(255,255,255,0.3);
-    transform: scale(1.05);
+  border-color: #4ecdc4;
+  transform: scale(1.1);
 }
 
 #result div h1 input[type="checkbox"]:checked {
-    background: 
-        linear-gradient(145deg, rgba(255,255,255,0.3), rgba(255,255,255,0.2)),
-        rgba(0,0,0,0.2);
-    border-color: rgba(255,255,255,0.4);
+  background: #4ecdc4;
+  border-color: #4ecdc4;
 }
 
 #result div h1 input[type="checkbox"]:checked::after {
-    content: '✓';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: bold;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+  content: "✓";
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-/* Completed task styling */
+/* Completed Task */
 #result div h1:has(input[type="checkbox"]:checked) {
-    opacity: 0.5;
-    text-decoration: line-through;
+  opacity: 0.5;
+  text-decoration: line-through;
 }
 
-/* Mirror remove button */
+/* Remove Button */
 #result div button {
-    background: 
-        linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)),
-        rgba(0,0,0,0.4);
-    backdrop-filter: blur(10px);
-    color: #ffffff;
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 0.75rem 1rem;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 
-        inset 0 1px 0 rgba(255,255,255,0.1),
-        inset 0 -1px 0 rgba(0,0,0,0.2);
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: 0.2s ease;
+  cursor: pointer;
 }
 
 #result div button:hover {
-    background: 
-        linear-gradient(145deg, rgba(255,100,100,0.2), rgba(255,100,100,0.1)),
-        rgba(0,0,0,0.3);
-    border-color: rgba(255,100,100,0.3);
-    transform: translateY(-2px);
-    box-shadow: 
-        0 8px 25px rgba(255,100,100,0.2),
-        inset 0 1px 0 rgba(255,255,255,0.2);
+  background: linear-gradient(135deg, #ff5f5f, #ff9966);
+  transform: scale(1.08);
 }
 
-/* Empty state */
+#result div button:active {
+  transform: scale(0.95);
+}
+
+/* Empty State */
 #result:empty::after {
-    content: '✨ No tasks yet. Create your first one above!';
-    display: block;
-    text-align: center;
-    padding: 3rem 1rem;
-    color: rgba(255,255,255,0.4);
-    font-size: 1.1rem;
-    font-weight: 500;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+  content: "🍊 Add a task to brighten your day!";
+  display: block;
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #a1a1a5;
+  font-size: 18px;
+  font-weight: 500;
 }
 
-/* Mobile responsive */
+/* Mobile Responsive */
 @media (max-width: 640px) {
-    body {
-        padding: 1rem;
-    }
-    
-    .main-wrapper {
-        padding: 2rem;
-    }
-    
-    .main-title {
-        font-size: 2rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    .input-group {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    #result div {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 1rem;
-        padding: 1rem 1.25rem;
-    }
-    
-    #result div h1 {
-        margin-bottom: 0.5rem;
-    }
-    
-    #result div button {
-        align-self: flex-end;
-    }
-}
+  body {
+    padding: 2rem 1rem;
+  }
 
-/* Enhanced mirror effects for modern browsers */
-@supports (backdrop-filter: blur(25px)) {
-    .main-wrapper {
-        backdrop-filter: blur(30px) saturate(200%);
-    }
-    
-    #result div {
-        backdrop-filter: blur(25px);
-    }
+  .main-wrapper {
+    padding: 2rem 1.5rem;
+  }
+
+  .main-title {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .input-group {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  #addbtn, #taskinput, #searchinput {
+    padding: 14px 18px;
+    font-size: 15px;
+  }
+
+  #result div {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  #result div button {
+    align-self: flex-end;
+  }
 }
