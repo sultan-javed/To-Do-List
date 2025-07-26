@@ -3,9 +3,9 @@
 // search tasks
 // upadate tasks as completed
 
-let tasks = []
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-let resultelement = document.getElementById('result');
+let resultelement = document.getElementById('result')
 
 let renderTasks = (array) => {
     resultelement.innerHTML = '';
@@ -17,18 +17,21 @@ let renderTasks = (array) => {
     });
 }
 
+renderTasks(tasks);
+
 document.getElementById('addbtn').addEventListener('click', () => {
 
     // get the value from the input field
 
     let value = document.getElementById('taskinput').value;
-    let object = {id: Date.now(), name: value, iscompleted: false};
+    let object = { id: Date.now(), name: value, iscompleted: false };
 
 
     //push the value into the tasks array
 
     tasks.push(object);
 
+    localStorage.setItem('tasks', JSON.stringify(tasks));
     //append the tasks to the result element
 
     renderTasks(tasks);
@@ -39,6 +42,7 @@ document.getElementById('addbtn').addEventListener('click', () => {
 let removeTask = (taskId) => {
     // remove the task from the tasks array
     tasks = tasks.filter(item => item.id != taskId);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
     renderTasks(tasks);
 }
 
@@ -54,13 +58,14 @@ document.getElementById('searchinput').addEventListener('keyup', () => {
 })
 
 let toggleCompleted = (taskId) => {
-    tasks=tasks.map(item => {
+    tasks = tasks.map(item => {
         if (item.id === taskId) {
             item.iscompleted = !item.iscompleted;
             return item;
-        }else{
+        } else {
             return item;
-        } 
+        }
     });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
     renderTasks(tasks);
 }
