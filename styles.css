@@ -1,0 +1,429 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+    min-height: 100vh;
+    padding: 2rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Mirror reflection elements */
+body::before,
+body::after {
+    content: '';
+    position: absolute;
+    background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+}
+
+body::before {
+    width: 400px;
+    height: 400px;
+    top: 10%;
+    left: -10%;
+    animation: mirror1 20s ease-in-out infinite;
+}
+
+body::after {
+    width: 300px;
+    height: 300px;
+    bottom: 10%;
+    right: -10%;
+    animation: mirror2 25s ease-in-out infinite;
+}
+
+@keyframes mirror1 {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+    50% { transform: translate(50px, -50px) scale(1.2); opacity: 0.4; }
+}
+
+@keyframes mirror2 {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+    50% { transform: translate(-30px, 30px) scale(0.8); opacity: 0.9; }
+}
+
+/* Main container - Mirror effect */
+.main-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    background: 
+        linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.1) 100%),
+        rgba(0,0,0,0.4);
+    backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 
+        0 25px 50px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,0.2),
+        inset 0 -1px 0 rgba(255,255,255,0.1);
+    position: relative;
+}
+
+/* Mirror shine effect */
+.main-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 100%);
+    border-radius: 24px 24px 0 0;
+    pointer-events: none;
+}
+
+.main-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    border-radius: 24px;
+}
+
+/* Title with mirror reflection */
+.main-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-shadow: 
+        0 0 30px rgba(255,255,255,0.3),
+        0 2px 0 rgba(0,0,0,0.8);
+    letter-spacing: -0.5px;
+    position: relative;
+}
+
+.main-title::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    color: rgba(255,255,255,0.1);
+    transform: scaleY(-1);
+    background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    pointer-events: none;
+}
+
+/* Input group */
+.input-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Mirror input styling */
+#taskinput, #searchinput {
+    background: 
+        linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)),
+        rgba(0,0,0,0.3);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 16px;
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+    color: #ffffff;
+    transition: all 0.3s ease;
+    outline: none;
+    box-shadow: 
+        inset 0 1px 0 rgba(255,255,255,0.1),
+        inset 0 -1px 0 rgba(0,0,0,0.2);
+}
+
+#taskinput {
+    flex: 1;
+}
+
+#searchinput {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+#taskinput::placeholder, #searchinput::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+#taskinput:focus, #searchinput:focus {
+    background: 
+        linear-gradient(145deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08)),
+        rgba(0,0,0,0.2);
+    border-color: rgba(255,255,255,0.4);
+    box-shadow: 
+        0 8px 32px rgba(255,255,255,0.1),
+        inset 0 1px 0 rgba(255,255,255,0.2),
+        inset 0 -1px 0 rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+/* Mirror add button */
+#addbtn {
+    background: 
+        linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1)),
+        rgba(0,0,0,0.3);
+    backdrop-filter: blur(15px);
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 16px;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        inset 0 1px 0 rgba(255,255,255,0.2),
+        inset 0 -1px 0 rgba(0,0,0,0.2);
+}
+
+#addbtn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.6s;
+}
+
+#addbtn:hover::before {
+    left: 100%;
+}
+
+#addbtn:hover {
+    background: 
+        linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,255,255,0.15)),
+        rgba(0,0,0,0.2);
+    border-color: rgba(255,255,255,0.4);
+    transform: translateY(-3px);
+    box-shadow: 
+        0 12px 40px rgba(255,255,255,0.15),
+        inset 0 1px 0 rgba(255,255,255,0.3);
+}
+
+/* Tasks container */
+#result {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Mirror task items */
+#result div {
+    background: 
+        linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04)),
+        rgba(0,0,0,0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 18px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.4s ease;
+    position: relative;
+    box-shadow: 
+        inset 0 1px 0 rgba(255,255,255,0.1),
+        inset 0 -1px 0 rgba(0,0,0,0.2);
+}
+
+#result div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+    border-radius: 18px 18px 0 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+#result div:hover::before {
+    opacity: 1;
+}
+
+#result div:hover {
+    background: 
+        linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06)),
+        rgba(0,0,0,0.3);
+    border-color: rgba(255,255,255,0.3);
+    transform: translateY(-4px);
+    box-shadow: 
+        0 20px 60px rgba(0,0,0,0.3),
+        0 0 0 1px rgba(255,255,255,0.1),
+        inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+#result div h1 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Mirror glass checkbox */
+#result div h1 input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    margin-right: 1rem;
+    cursor: pointer;
+    appearance: none;
+    background: 
+        linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)),
+        rgba(0,0,0,0.3);
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    position: relative;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        inset 0 1px 0 rgba(255,255,255,0.1),
+        inset 0 -1px 0 rgba(0,0,0,0.2);
+}
+
+#result div h1 input[type="checkbox"]:hover {
+    background: 
+        linear-gradient(145deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08)),
+        rgba(0,0,0,0.2);
+    border-color: rgba(255,255,255,0.3);
+    transform: scale(1.05);
+}
+
+#result div h1 input[type="checkbox"]:checked {
+    background: 
+        linear-gradient(145deg, rgba(255,255,255,0.3), rgba(255,255,255,0.2)),
+        rgba(0,0,0,0.2);
+    border-color: rgba(255,255,255,0.4);
+}
+
+#result div h1 input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+
+/* Completed task styling */
+#result div h1:has(input[type="checkbox"]:checked) {
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
+/* Mirror remove button */
+#result div button {
+    background: 
+        linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)),
+        rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 
+        inset 0 1px 0 rgba(255,255,255,0.1),
+        inset 0 -1px 0 rgba(0,0,0,0.2);
+}
+
+#result div button:hover {
+    background: 
+        linear-gradient(145deg, rgba(255,100,100,0.2), rgba(255,100,100,0.1)),
+        rgba(0,0,0,0.3);
+    border-color: rgba(255,100,100,0.3);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 25px rgba(255,100,100,0.2),
+        inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+/* Empty state */
+#result:empty::after {
+    content: '✨ No tasks yet. Create your first one above!';
+    display: block;
+    text-align: center;
+    padding: 3rem 1rem;
+    color: rgba(255,255,255,0.4);
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+    body {
+        padding: 1rem;
+    }
+    
+    .main-wrapper {
+        padding: 2rem;
+    }
+    
+    .main-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .input-group {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    #result div {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
+    }
+    
+    #result div h1 {
+        margin-bottom: 0.5rem;
+    }
+    
+    #result div button {
+        align-self: flex-end;
+    }
+}
+
+/* Enhanced mirror effects for modern browsers */
+@supports (backdrop-filter: blur(25px)) {
+    .main-wrapper {
+        backdrop-filter: blur(30px) saturate(200%);
+    }
+    
+    #result div {
+        backdrop-filter: blur(25px);
+    }
+}
