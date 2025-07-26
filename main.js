@@ -5,15 +5,21 @@
 
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-let resultelement = document.getElementById('result')
+let resultelement = document.querySelector('#result')
 
 let renderTasks = (array) => {
     resultelement.innerHTML = '';
-    array.forEach((item, index) => {
-        resultelement.innerHTML += `<div>
-                                      <h1><input type="checkbox" onchange="toggleCompleted(${item.id})" ${item.iscompleted ? 'checked' : ''}>${item.name} - ${item.iscompleted ? 'Completed' : ''}</h1>
-                                      <button onclick="removeTask(${item.id})">Remove</button>
-                                     </div>`;
+    array.forEach((item) => {
+        let divElement = document.createElement('div');
+        divElement.innerHTML += `<h1><input type="checkbox" ${item.iscompleted ? 'checked' : ''}>${item.name} - ${item.iscompleted ? 'Completed' : ''}</h1>
+                                    <button >Remove</button>`;
+        divElement.querySelector('input').addEventListener('change', () => {
+            toggleCompleted(item.id);
+        });
+        divElement.querySelector('button').addEventListener('click', () => {
+            removeTask(item.id);
+        });
+        resultelement.appendChild(divElement);
     });
 }
 
@@ -30,6 +36,7 @@ document.getElementById('addbtn').addEventListener('click', () => {
     //push the value into the tasks array
 
     tasks.push(object);
+    document.getElementById('taskinput').value = '';
 
     localStorage.setItem('tasks', JSON.stringify(tasks));
     //append the tasks to the result element
